@@ -1,0 +1,17 @@
+.todolist {
+  border: 2px, solid, darkblue;
+  border-radius: 5px;
+  min-width: 250px;
+  min-height: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  background-color: rgba(119, 185, 54, 0.721);
+}
+
+.todolistTitle {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.taskBlock {
+}

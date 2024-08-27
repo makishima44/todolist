@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.todolistBlock {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
