@@ -8,6 +8,13 @@
   background-color: rgba(119, 185, 54, 0.721);
 }
 
+.todolistTitleBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 .todolistTitle {
   text-decoration: underline;
   text-decoration-thickness: 2px;

@@ -1,24 +1,38 @@
+import { useDispatch } from "react-redux";
 import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
 import s from "./Todolist.module.css";
+import {
+  changeTodolistTitle,
+  removeTodolist,
+} from "../../../redux/todolistsSlice";
+import { EditableTitle } from "../EditableSpan/EditableSpan";
 
 type TodolistProps = {
-  name: string;
+  todolistName: string;
   todolistId: string;
 };
 
-export const Todolist = ({
-  name,
-  todolistId,
-}: 
-TodolistProps) => {
+export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
+  const dispatch = useDispatch();
+
+  const handleDeleteTodolist = () => {
+    dispatch(removeTodolist({ id: todolistId }));
+  };
+
+  const onChangeTitle = (newTitle: string) => {
+    dispatch(changeTodolistTitle({ id: todolistId, title: newTitle }));
+  };
+
   return (
     <div className={s.todolist}>
-      <h3 className={s.todolistTitle}>{name}</h3>
-      <div className={s.taskBlock}>
-        {/* <Input value={taskName} onChange={onTaskChange} /> */}
-        {/* <Button name={"create Task"} onClick={addTask} /> */}
+      <div className={s.todolistTitleBlock}>
+        <EditableTitle
+          title={todolistName}
+          onChange={onChangeTitle}
+        ></EditableTitle>
+        <Button name={"X"} onClick={handleDeleteTodolist} />
       </div>
+      <div className={s.taskBlock}></div>
     </div>
   );
 };
