@@ -6,6 +6,8 @@ import {
   removeTodolist,
 } from "../../../redux/todolistsSlice";
 import { EditableTitle } from "../EditableSpan/EditableSpan";
+import { addTask } from "../../../redux/taskSlice";
+import { useState } from "react";
 
 type TodolistProps = {
   todolistName: string;
@@ -14,6 +16,7 @@ type TodolistProps = {
 
 export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
   const dispatch = useDispatch();
+  const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const handleDeleteTodolist = () => {
     dispatch(removeTodolist({ id: todolistId }));
@@ -21,6 +24,10 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
 
   const onChangeTitle = (newTitle: string) => {
     dispatch(changeTodolistTitle({ id: todolistId, title: newTitle }));
+  };
+
+  const handleAddTask = () => {
+    dispatch(addTask({ todolistId, title: newTaskTitle }));
   };
 
   return (
