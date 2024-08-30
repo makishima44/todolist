@@ -27,7 +27,7 @@ const taskSlice = createSlice({
       const newTask: Task = {
         id: v1(),
         title,
-        status: "active", // Начальное состояние задачи
+        status: "active", 
       };
       if (!state[todolistId]) {
         state[todolistId] = []; // Создаем массив задач, если его еще нет
