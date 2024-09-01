@@ -10,6 +10,7 @@ import { addTask } from "../../../redux/taskSlice";
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { RootState } from "../../../redux/store";
+import { Task } from "../Task/Task";
 
 type TodolistProps = {
   todolistName: string;
@@ -36,8 +37,12 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
   };
 
   const handleAddTask = () => {
-    dispatch(addTask({ todolistId, title: newTaskTitle }));
-    setNewTaskTitle("");
+    if (newTaskTitle.length < 4) {
+      alert("name should be more 4 symbols");
+    } else {
+      dispatch(addTask({ todolistId, title: newTaskTitle }));
+      setNewTaskTitle("");
+    }
   };
 
   return (
@@ -47,14 +52,18 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
           title={todolistName}
           onChange={onChangeTitle}
         ></EditableTitle>
-        <Button name={"X"} onClick={handleDeleteTodolist} />
+        <Button name={"x"} onClick={handleDeleteTodolist} />
       </div>
       <div className={s.taskBlock}>
         <Input onChange={handleInputChange} value={newTaskTitle} />
         <Button name={"+"} onClick={handleAddTask} />
         <ul>
           {tasks.map((task) => (
-            <li key={task.id}>{task.title}</li>
+            <Task
+              taskName={task.title}
+              todolistId={todolistId}
+              taskId={task.id}
+            />
           ))}
         </ul>
       </div>

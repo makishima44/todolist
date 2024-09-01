@@ -7,11 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { addTodolist } from "./redux/todolistsSlice";
 
-export type Task = {
-  id: string;
-  name: string;
-};
-
 function App() {
   const dispatch = useDispatch();
   const todolists = useSelector((state: RootState) => state.todolists);
@@ -19,8 +14,14 @@ function App() {
   const [todolistName, setTodolistName] = useState("");
 
   const handleCreateTodolist = () => {
-    dispatch(addTodolist({ title: todolistName }));
-    setTodolistName("");
+    if (todolistName.length < 4) {
+      alert("name should be more 4 symbols");
+    } else if (todolistName.length > 25) {
+      alert("name should be less than 25 symbols");
+    } else {
+      dispatch(addTodolist({ title: todolistName }));
+      setTodolistName("");
+    }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

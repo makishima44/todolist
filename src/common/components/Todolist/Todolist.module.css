@@ -1,14 +1,20 @@
 .todolist {
-  border: 2px, solid, darkblue;
-  border-radius: 5px;
+  border: 2px, solid, #007bff;
+  border-radius: 15px;
   min-width: 250px;
   min-height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
   padding: 10px;
-  background-color: rgba(119, 185, 54, 0.721);
+  background-color: rgba(224, 235, 70, 0.721);
+}
+
+.todolist:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
+  background-color: rgba(231, 245, 32, 0.721);
 }
 
 .todolistTitleBlock {
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,5 +26,9 @@
   text-decoration-thickness: 2px;
 }
 
-.taskBlock {
+.taskBlock ul {
+  /* display: flex;
+  text-align: center;
+  justify-content: center; */
+  list-style-type: none;
 }

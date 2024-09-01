@@ -27,15 +27,26 @@ const taskSlice = createSlice({
       const newTask: Task = {
         id: v1(),
         title,
-        status: "active", 
+        status: "active",
       };
       if (!state[todolistId]) {
-        state[todolistId] = []; // Создаем массив задач, если его еще нет
+        state[todolistId] = [];
       }
       state[todolistId].push(newTask);
+    },
+
+    removeTask: (
+      state,
+      action: PayloadAction<{ todolistId: string; taskId: string }>
+    ) => {
+      const { todolistId, taskId } = action.payload;
+      const todolist = state[todolistId];
+      if (todolist) {
+        state[todolistId] = todolist.filter((task) => task.id !== taskId);
+      }
     },
   },
 });
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, removeTask } = taskSlice.actions;
 export const tasksReducer = taskSlice.reducer;
