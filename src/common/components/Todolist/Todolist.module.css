@@ -6,6 +6,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
   padding: 10px;
   background-color: rgba(224, 235, 70, 0.721);
+  text-align: center;
 }
 
 .todolist:hover {
@@ -21,14 +22,17 @@
   gap: 5px;
 }
 
-.todolistTitle {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.taskBlock ul {
-  /* display: flex;
-  text-align: center;
-  justify-content: center; */
-  list-style-type: none;
+.taskMenu {
+  display: flex;
+  margin-bottom: 15px;
 }
