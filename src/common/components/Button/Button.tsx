@@ -3,12 +3,16 @@ import s from "./Button.module.css";
 export type ButtonProps = {
   name: string;
   onClick: () => void;
+  type?: "add" | "delete";
 };
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({ name, onClick, type = "add" }: ButtonProps) => {
   return (
-    <button className={s.button} onClick={props.onClick}>
-      {props.name}
+    <button
+      className={`${s.button} ${type === "delete" ? s.delete : s.add}`}
+      onClick={onClick}
+    >
+      {name}
     </button>
   );
 };

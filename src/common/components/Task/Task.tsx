@@ -19,8 +19,8 @@ export const Task = ({ taskName, todolistId, taskId }: TaskProps) => {
 
   return (
     <div className={s.taskBlock}>
-      <h3>{taskName}</h3>
-      <Button name={"x"} onClick={handleDeleteTask} />
+      <span>{taskName}</span>
+      <Button name={"x"} onClick={handleDeleteTask} type="delete" />
     </div>
   );
 };

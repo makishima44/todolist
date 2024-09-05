@@ -52,12 +52,16 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
           title={todolistName}
           onChange={onChangeTitle}
         ></EditableTitle>
-        <Button name={"x"} onClick={handleDeleteTodolist} />
+        <Button name={"x"} onClick={handleDeleteTodolist} type="delete" />
       </div>
+
       <div className={s.taskBlock}>
-        <Input onChange={handleInputChange} value={newTaskTitle} />
-        <Button name={"+"} onClick={handleAddTask} />
-        <ul>
+        <div className={s.taskMenu}>
+          <Input onChange={handleInputChange} value={newTaskTitle} />
+          <Button name={"+"} onClick={handleAddTask} />
+        </div>
+
+        <div className={s.taskList}>
           {tasks.map((task) => (
             <Task
               taskName={task.title}
@@ -65,7 +69,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
               taskId={task.id}
             />
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
