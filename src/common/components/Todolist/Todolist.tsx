@@ -67,6 +67,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
               taskName={task.title}
               todolistId={todolistId}
               taskId={task.id}
+              taskStatus={task.status}
             />
           ))}
         </div>
