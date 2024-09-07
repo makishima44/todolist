@@ -1,4 +1,4 @@
-import s from "./button.module.css";
+import s from "./Button.module.css";
 
 export type ButtonProps = {
   name: string;
