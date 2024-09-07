@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #007bff;
+  color: white;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.leftBlock {
+  display: flex;
+  gap: 5px;
+}
+
+.rightBlock {
+  display: flex;
+}
