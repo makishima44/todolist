@@ -3,6 +3,7 @@ import { Todolist } from "./common/components/Todolist/Todolist";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { Header } from "./common/components/Header/Header";
+import { Weather } from "./common/components/WeatherApi/Weather";
 
 function App() {
   const todolists = useSelector((state: RootState) => state.todolists);
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className={s.App}>
       <Header />
-
+    
       <div className={s.todolistBlock}>
         {todolists.map((td) => {
           return <Todolist todolistName={td.title} todolistId={td.id} />;

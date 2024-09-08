@@ -5,6 +5,7 @@ import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import s from "./Header.module.css";
 import Clock from "../Clock/Clock";
+import { Weather } from "../WeatherApi/Weather";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ export const Header = () => {
         <Input onChange={handleInputChange} value={todolistName} />
         <Button name={"create Todolist"} onClick={handleCreateTodolist} />
       </div>
+
       <div className={s.rightBlock}>
+        <Weather location={"Могилев"} />
         <Clock />
       </div>
     </div>
