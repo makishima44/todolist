@@ -32,9 +32,8 @@ export const Header = () => {
         <Input onChange={handleInputChange} value={todolistName} />
         <Button name={"create Todolist"} onClick={handleCreateTodolist} />
       </div>
-
+      <Weather location={"Mogilev, Belarus"} />
       <div className={s.rightBlock}>
-        <Weather location={"Могилев"} />
         <Clock />
       </div>
     </div>

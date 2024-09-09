@@ -1,0 +1,31 @@
+.weatherContainer {
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание по центру */
+  gap: 10px; /* Расстояние между изображением и текстом */
+  border: 1px solid #ddd; /* Легкая граница */
+  padding: 10px; /* Отступы внутри контейнера */
+  border-radius: 8px; /* Скругление углов */
+  background-color: rgba(231, 245, 32, 0.721);
+  max-width: 300px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирование контейнера */
+}
+
+.weatherIcon {
+  width: 50px;
+  height: 50px;
+  object-fit: cover; /* Изображение не искажается */
+}
+
+.weatherText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Вертикальное выравнивание текста по центру */
+}
+
+.weatherTemperature,
+.weatherCondition {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #007bff;
+}

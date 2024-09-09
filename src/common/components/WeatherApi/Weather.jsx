@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { getCurrentWeather } from "./weatherAPI";
+import { useEffect, useState } from "react";
+import { getCurrentWeather } from "../../API/weatherAPI";
+import s from "./Wheather.module.css";
 
 export const Weather = ({ location }) => {
   const [weather, setWeather] = useState(null);
@@ -22,9 +23,20 @@ export const Weather = ({ location }) => {
   if (!weather) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h3> {weather.location.name}</h3>
-      <p>Temperature: {weather.current.temp_c}°C</p>
+    <div className={s.weatherContainer}>
+      <img
+        src={weather.current.condition.icon}
+        alt={weather.current.condition.text}
+        className={s.weatherIcon}
+      />
+      <div className={s.weatherText}>
+        <p className={s.weatherTemperature}>
+          Temperature: {weather.current.temp_c}°C
+        </p>
+        <p className={s.weatherCondition}>
+          Condition: {weather.current.condition.text}
+        </p>
+      </div>
     </div>
   );
 };

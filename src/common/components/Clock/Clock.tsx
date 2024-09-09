@@ -11,9 +11,9 @@ const Clock = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  const seconds = time.getSeconds();
+  const hours = time.getHours().toString().padStart(2, "0");
+  const minutes = time.getMinutes().toString().padStart(2, "0");
+  const seconds = time.getSeconds().toString().padStart(2, "0");
   const timeString = `${hours}:${minutes}:${seconds}`;
   return (
     <div>
