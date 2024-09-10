@@ -1,0 +1,21 @@
+.clockContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(231, 245, 32, 0.721);
+  max-width: 300px;
+
+  height: 40px;
+}
+
+.dateText,
+.timeText {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #007bff;
+}
