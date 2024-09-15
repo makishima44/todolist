@@ -1,0 +1,13 @@
+.editableTitle {
+  font-size: 24px;
+  font-weight: 900;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.editableInput {
+  /* padding: 8px; */
+  font-size: 18px;
+  box-sizing: border-box;
+  width: 200px;
+}

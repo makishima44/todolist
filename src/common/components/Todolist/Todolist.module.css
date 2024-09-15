@@ -1,7 +1,7 @@
 .todolist {
   border: 2px, solid, #007bff;
   border-radius: 15px;
-  min-width: 250px;
+  min-width: 300px;
   min-height: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
   padding: 10px;
@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  margin-bottom: 10px;
 }
 
 .taskList {
