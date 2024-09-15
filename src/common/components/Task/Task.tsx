@@ -3,10 +3,12 @@ import { Button } from "../Button/Button";
 import { useDispatch } from "react-redux";
 import {
   changeTaskStatus,
+  changeTaskTitle,
   removeTask,
   StatusTask,
 } from "../../../redux/taskSlice";
 import s from "./Task.module.css";
+import { EditableTitle } from "../EditableTitle/EditableTitle";
 
 type TaskProps = {
   taskName: string;
@@ -32,6 +34,10 @@ export const Task = ({
     dispatch(changeTaskStatus({ todolistId, taskId, status: newStatus }));
   };
 
+  const handleChangeTaskTitle = (newTitle: string) => {
+    dispatch(changeTaskTitle({ todolistId, taskId, title: newTitle }));
+  };
+
   return (
     <div className={s.taskBlock}>
       <input
@@ -39,7 +45,11 @@ export const Task = ({
         checked={taskStatus === "complete"}
         onChange={handleChangeTaskStatus}
       />
-      <span>{taskName}</span>
+      <EditableTitle
+        title={taskName}
+        onChange={handleChangeTaskTitle}
+      ></EditableTitle>
+
       <Button name={"x"} onClick={handleDeleteTask} type="delete" />
     </div>
   );

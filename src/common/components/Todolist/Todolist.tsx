@@ -5,7 +5,7 @@ import {
   changeTodolistTitle,
   removeTodolist,
 } from "../../../redux/todolistsSlice";
-import { EditableTitle } from "../EditableSpan/EditableSpan";
+import { EditableTitle } from "../EditableTitle/EditableTitle";
 import { addTask } from "../../../redux/taskSlice";
 import { useState } from "react";
 import { Input } from "../Input/Input";
