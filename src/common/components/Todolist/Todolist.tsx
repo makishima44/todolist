@@ -1,15 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "../Button/Button";
 import s from "./Todolist.module.css";
 import {
-  changeTodolistTitle,
-  removeTodolist,
+  fetchTodolistsAsync,
+  removeTodolistAsync,
+  updateTodolistTitleAsync,
 } from "../../../redux/todolistsSlice";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
-import { addTask } from "../../../redux/taskSlice";
-import { useState } from "react";
+import { addTaskAsync, fetchTasksAsync } from "../../../redux/taskSlice";
+import { useEffect, useState } from "react";
 import { Input } from "../Input/Input";
-import { RootState } from "../../../redux/store";
+import { RootState, useAppDispatch } from "../../../redux/store";
 import { Task } from "../Task/Task";
 
 type TodolistProps = {
@@ -18,18 +19,24 @@ type TodolistProps = {
 };
 
 export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
-  const dispatch = useDispatch();
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+
+  const dispatch = useAppDispatch();
   const tasks = useSelector(
     (state: RootState) => state.tasks[todolistId] || []
   );
-  const [newTaskTitle, setNewTaskTitle] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchTasksAsync(todolistId));
+  }, [dispatch, todolistId]);
 
   const handleDeleteTodolist = () => {
-    dispatch(removeTodolist({ id: todolistId }));
+    dispatch(removeTodolistAsync(todolistId));
+    dispatch(fetchTodolistsAsync());
   };
 
-  const onChangeTitle = (newTitle: string) => {
-    dispatch(changeTodolistTitle({ id: todolistId, title: newTitle }));
+  const handleChangeTodolisTitle = (newTitle: string) => {
+    dispatch(updateTodolistTitleAsync({ todolistId, title: newTitle }));
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +47,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
     if (newTaskTitle.length < 4) {
       alert("name should be more 4 symbols");
     } else {
-      dispatch(addTask({ todolistId, title: newTaskTitle }));
+      dispatch(addTaskAsync({ todolistId, title: newTaskTitle }));
       setNewTaskTitle("");
     }
   };
@@ -50,7 +57,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
       <div className={s.todolistTitleBlock}>
         <EditableTitle
           title={todolistName}
-          onChange={onChangeTitle}
+          onChange={handleChangeTodolisTitle}
         ></EditableTitle>
         <Button name={"x"} onClick={handleDeleteTodolist} type="delete" />
       </div>

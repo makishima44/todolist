@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodolist } from "../../../redux/todolistsSlice";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import s from "./Header.module.css";
 import Clock from "../Clock/Clock";
 import { Weather } from "../WeatherApi/Weather";
+import { useAppDispatch } from "../../../redux/store";
+import { addTodolistAsync } from "../../../redux/todolistsSlice";
 
 export const Header = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [todolistName, setTodolistName] = useState("");
 
   const handleCreateTodolist = () => {
@@ -17,7 +17,7 @@ export const Header = () => {
     } else if (todolistName.length > 25) {
       alert("name should be less than 25 symbols");
     } else {
-      dispatch(addTodolist({ title: todolistName }));
+      dispatch(addTodolistAsync(todolistName));
       setTodolistName("");
     }
   };

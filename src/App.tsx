@@ -1,21 +1,27 @@
 import s from "./App.module.css";
 import { Todolist } from "./common/components/Todolist/Todolist";
 import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
+import { RootState, useAppDispatch } from "./redux/store";
 import { Header } from "./common/components/Header/Header";
-
+import { useEffect } from "react";
+import { fetchTodolistsAsync } from "./redux/todolistsSlice";
 
 function App() {
+  const dispatch = useAppDispatch();
   const todolists = useSelector((state: RootState) => state.todolists);
+
+  useEffect(() => {
+    dispatch(fetchTodolistsAsync());
+  }, [dispatch]);
 
   return (
     <div className={s.App}>
       <Header />
-  
+
       <div className={s.todolistBlock}>
-        {todolists.map((td) => {
-          return <Todolist todolistName={td.title} todolistId={td.id} />;
-        })}
+        {todolists.map((td) => (
+          <Todolist todolistName={td.title} todolistId={td.id} key={td.id} />
+        ))}
       </div>
     </div>
   );

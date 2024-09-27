@@ -1,14 +1,13 @@
-import React from "react";
 import { Button } from "../Button/Button";
-import { useDispatch } from "react-redux";
 import {
-  changeTaskStatus,
-  changeTaskTitle,
-  removeTask,
+  changeTaskStatusAsync,
+  removeTaskAsync,
   StatusTask,
+  updateTaskTitleAsync,
 } from "../../../redux/taskSlice";
 import s from "./Task.module.css";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
+import { useAppDispatch } from "../../../redux/store";
 
 type TaskProps = {
   taskName: string;
@@ -23,19 +22,19 @@ export const Task = ({
   taskId,
   taskStatus,
 }: TaskProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDeleteTask = () => {
-    dispatch(removeTask({ todolistId, taskId }));
+    dispatch(removeTaskAsync({ todolistId, taskId }));
   };
 
   const handleChangeTaskStatus = () => {
     const newStatus = taskStatus === "active" ? "complete" : "active";
-    dispatch(changeTaskStatus({ todolistId, taskId, status: newStatus }));
+    dispatch(changeTaskStatusAsync({ todolistId, taskId, status: newStatus }));
   };
 
   const handleChangeTaskTitle = (newTitle: string) => {
-    dispatch(changeTaskTitle({ todolistId, taskId, title: newTitle }));
+    dispatch(updateTaskTitleAsync({ todolistId, taskId, title: newTitle }));
   };
 
   return (
