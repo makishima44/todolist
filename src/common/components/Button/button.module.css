@@ -1,7 +1,8 @@
 .button {
   border: none;
   border-radius: 5px;
-  color: white;
+  color: #003366;
+  background-color: white;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -11,31 +12,31 @@
 .add {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #cce7ff;
 }
 
 .add:hover {
-  background-color: #0056b3;
+  background-color: #99c2e6;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .add:active {
-  background-color: #004494;
+  background-color: #66a3cc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .delete {
   padding: 5px 10px;
   font-size: 12px;
-  background-color: #ff4d4d;
+  background-color: #cce7ff;
 }
 
 .delete:hover {
-  background-color: #cc0000;
+  background-color: #99c2e6;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .delete:active {
-  background-color: #990000;
+  background-color: #66a3cc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
