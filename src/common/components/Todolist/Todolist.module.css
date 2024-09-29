@@ -1,19 +1,20 @@
 .todolist {
-  border: 2px, solid, #007bff;
-  border-radius: 15px;
-  min-width: 300px;
-  min-height: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-  padding: 10px;
-  background-color: rgba(224, 235, 70, 0.721);
-  text-align: center;
+  color: #003366;
+  margin: 15px; /* Отступы вокруг тудулиста */
+  border: 2px solid #003366; /* Черная рамка */
+  border-radius: 15px; /* Скругленные углы */
+  min-width: 300px; /* Минимальная ширина */
+  min-height: 300px; /* Минимальная высота */
+  transition: all 0.3s ease-in-out; /* Плавный переход для эффектов */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень для глубины */
+  padding: 10px; /* Отступы внутри тудулиста */
+  background-color: white; /* Белый фон */
+  text-align: center; /* Выравнивание текста по центру */
 }
 
 .todolist:hover {
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
-  background-color: rgba(231, 245, 32, 0.721);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8); /* Увеличенная тень при наведении */
 }
-
 .todolistTitleBlock {
   font-size: 20px;
   display: flex;
