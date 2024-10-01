@@ -40,3 +40,8 @@
   background-color: #66a3cc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+button:disabled {
+  opacity: 0.5; /* Пример для уменьшения яркости */
+  cursor: not-allowed; /* Изменяет курсор на "запрещено" */
+}
