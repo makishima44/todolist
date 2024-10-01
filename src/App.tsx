@@ -8,7 +8,9 @@ import { fetchTodolistsAsync } from "./redux/todolistsSlice";
 
 function App() {
   const dispatch = useAppDispatch();
-  const todolists = useSelector((state: RootState) => state.todolists);
+  const todolists = useSelector(
+    (state: RootState) => state.todolists.todolists
+  );
 
   useEffect(() => {
     dispatch(fetchTodolistsAsync());

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import Clock from "../Clock/Clock";
-import { useAppDispatch } from "../../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { addTodolistAsync } from "../../../redux/todolistsSlice";
 import { Weather } from "../Weather/Weather";
 import s from "./Header.module.css";
@@ -10,6 +10,7 @@ import s from "./Header.module.css";
 export const Header = () => {
   const dispatch = useAppDispatch();
   const [todolistName, setTodolistName] = useState("");
+  const isLoading = useAppSelector((state) => state.todolists.loading);
 
   const handleCreateTodolist = () => {
     if (todolistName.length < 4) {
@@ -20,6 +21,7 @@ export const Header = () => {
       dispatch(addTodolistAsync(todolistName));
       setTodolistName("");
     }
+    console.log("Loading state:", isLoading);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,11 @@ export const Header = () => {
     <div className={s.header}>
       <div className={s.leftBlock}>
         <Input onChange={handleInputChange} value={todolistName} />
-        <Button name={"create Todolist"} onClick={handleCreateTodolist} />
+        <Button
+          name={"create Todolist"}
+          onClick={handleCreateTodolist}
+          disabled={isLoading}
+        />
       </div>
       <Weather location={"Mogilev, Belarus"} />
       <div className={s.rightBlock}>
