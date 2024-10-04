@@ -59,13 +59,13 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
           title={todolistName}
           onChange={handleChangeTodolisTitle}
         ></EditableTitle>
-        <Button name={"x"} onClick={handleDeleteTodolist} type="delete" />
+        <Button useIcon={true} onClick={handleDeleteTodolist} type="delete" />
       </div>
 
       <div className={s.taskBlock}>
         <div className={s.taskMenu}>
           <Input onChange={handleInputChange} value={newTaskTitle} />
-          <Button name={"+"} onClick={handleAddTask} />
+          <Button useIcon={true} onClick={handleAddTask} />
         </div>
 
         <div className={s.taskList}>

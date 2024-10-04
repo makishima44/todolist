@@ -51,7 +51,7 @@ export const Task = ({
         ></EditableTitle>
       </div>
 
-      <Button name={"x"} onClick={handleDeleteTask} type="delete" />
+      <Button useIcon={true} onClick={handleDeleteTask} type="delete" />
     </div>
   );
 };
