@@ -1,6 +1,18 @@
 .taskBlock {
   display: flex;
   align-items: center;
-
   gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.taskContent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.taskContent input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
 }

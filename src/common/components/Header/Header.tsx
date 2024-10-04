@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
-import Clock from "../Clock/Clock";
+import { Clock } from "../Clock/Clock";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { addTodolistAsync } from "../../../redux/todolistsSlice";
 import { Weather } from "../Weather/Weather";
@@ -21,7 +21,6 @@ export const Header = () => {
       dispatch(addTodolistAsync(todolistName));
       setTodolistName("");
     }
-    console.log("Loading state:", isLoading);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +29,7 @@ export const Header = () => {
 
   return (
     <div className={s.header}>
-      <div className={s.leftBlock}>
+      <div className={s.todolistContainer}>
         <Input onChange={handleInputChange} value={todolistName} />
         <Button
           name={"create Todolist"}
@@ -38,8 +37,9 @@ export const Header = () => {
           disabled={isLoading}
         />
       </div>
-      <Weather location={"Mogilev, Belarus"} />
-      <div className={s.rightBlock}>
+
+      <div className={s.weatherAndClockContainer}>
+        <Weather location={"Mogilev, Belarus"} />
         <Clock />
       </div>
     </div>

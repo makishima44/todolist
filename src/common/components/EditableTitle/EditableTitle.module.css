@@ -3,11 +3,11 @@
   font-weight: 900;
   padding: 8px;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .editableInput {
-  /* padding: 8px; */
   font-size: 18px;
   box-sizing: border-box;
-  width: 200px;
+  width: 100%;
 }
