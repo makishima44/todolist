@@ -39,15 +39,17 @@ export const Task = ({
 
   return (
     <div className={s.taskBlock}>
-      <input
-        type="checkbox"
-        checked={taskStatus === "complete"}
-        onChange={handleChangeTaskStatus}
-      />
-      <EditableTitle
-        title={taskName}
-        onChange={handleChangeTaskTitle}
-      ></EditableTitle>
+      <div className={s.taskContent}>
+        <input
+          type="checkbox"
+          checked={taskStatus === "complete"}
+          onChange={handleChangeTaskStatus}
+        />
+        <EditableTitle
+          title={taskName}
+          onChange={handleChangeTaskTitle}
+        ></EditableTitle>
+      </div>
 
       <Button name={"x"} onClick={handleDeleteTask} type="delete" />
     </div>
