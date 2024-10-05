@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "./redux/store";
 import { Header } from "./common/components/Header/Header";
 import { useEffect } from "react";
-import { fetchTodolistsAsync } from "./redux/todolistsSlice";
+import { fetchTodolistsAsync } from "./redux/todolistThunk";
 
 function App() {
   const dispatch = useAppDispatch();

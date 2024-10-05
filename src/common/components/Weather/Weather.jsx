@@ -1,6 +1,6 @@
+import s from "./Wheather.module.css";
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "../../API/weatherAPI";
-import s from "./Wheather.module.css";
 
 export const Weather = ({ location }) => {
   const [weather, setWeather] = useState(null);

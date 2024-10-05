@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./EditableTitle.module.css";
+import s from "./EditableTitle.module.css";
 
 type EditableTitleProps = {
   title: string;
@@ -24,17 +24,17 @@ export const EditableTitle = ({ title, onChange }: EditableTitleProps) => {
   };
 
   return (
-    <div>
+    <div className={s.editableTitleBlock}>
       {editMode ? (
         <input
           value={newTitle}
           onChange={onChangeTitle}
           onBlur={saveTitle}
           autoFocus
-          className={styles.editableInput}
+          className={s.editableInput}
         />
       ) : (
-        <span onDoubleClick={activateEditMode} className={styles.editableTitle}>
+        <span onDoubleClick={activateEditMode} className={s.editableTitle}>
           {title}
         </span>
       )}

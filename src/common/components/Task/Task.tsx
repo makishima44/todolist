@@ -1,13 +1,13 @@
-import { Button } from "../Button/Button";
-import {
-  changeTaskStatusAsync,
-  removeTaskAsync,
-  StatusTask,
-  updateTaskTitleAsync,
-} from "../../../redux/taskSlice";
 import s from "./Task.module.css";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
 import { useAppDispatch } from "../../../redux/store";
+import { Button } from "../Button/Button";
+import { StatusTask } from "../../../redux/taskSlice";
+import {
+  changeTaskStatusAsync,
+  removeTaskAsync,
+  updateTaskTitleAsync,
+} from "../../../redux/taskThunk";
 
 type TaskProps = {
   taskName: string;
