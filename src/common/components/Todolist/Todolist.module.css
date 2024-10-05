@@ -3,7 +3,9 @@
   margin: 15px;
   border: 2px solid #003366;
   border-radius: 15px;
+  min-width: 350px;
   max-width: 350px;
+  min-height: 400px;
   height: auto;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -32,10 +34,12 @@
   justify-content: flex-start;
   align-items: flex-start;
   max-height: 350px;
-  overflow-y: hidden;
+  padding-right: 10px;
+  overflow-y: auto;
 }
 
 .taskMenu {
   display: flex;
+  gap: 10px;
   margin-bottom: 15px;
 }

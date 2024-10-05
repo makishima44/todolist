@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import s from "./Header.module.css";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { Clock } from "../Clock/Clock";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
-import { addTodolistAsync } from "../../../redux/todolistsSlice";
 import { Weather } from "../Weather/Weather";
-import s from "./Header.module.css";
+import { addTodolistAsync } from "../../../redux/todolistThunk";
 
 export const Header = () => {
   const dispatch = useAppDispatch();

@@ -1,17 +1,17 @@
+import s from "./Todolist.module.css";
 import { useSelector } from "react-redux";
 import { Button } from "../Button/Button";
-import s from "./Todolist.module.css";
-import {
-  fetchTodolistsAsync,
-  removeTodolistAsync,
-  updateTodolistTitleAsync,
-} from "../../../redux/todolistsSlice";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
-import { addTaskAsync, fetchTasksAsync } from "../../../redux/taskSlice";
 import { useEffect, useState } from "react";
 import { Input } from "../Input/Input";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { Task } from "../Task/Task";
+import { addTaskAsync, fetchTasksAsync } from "../../../redux/taskThunk";
+import {
+  fetchTodolistsAsync,
+  removeTodolistAsync,
+  updateTodolistTitleAsync,
+} from "../../../redux/todolistThunk";
 
 type TodolistProps = {
   todolistName: string;
@@ -71,6 +71,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
         <div className={s.taskList}>
           {tasks.map((task) => (
             <Task
+              key={task.id}
               taskName={task.title}
               todolistId={todolistId}
               taskId={task.id}
