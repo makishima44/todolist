@@ -31,6 +31,7 @@ export const addTodolistAsync = createAsyncThunk(
       const newTodolist: Todolist = {
         id: v1(),
         title,
+        dateCreated: new Date().toISOString(),
       };
       await addTodolistToFirebase(newTodolist.id, title);
       return newTodolist;

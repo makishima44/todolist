@@ -22,7 +22,12 @@ function App() {
 
       <div className={s.todolistBlock}>
         {todolists.map((td) => (
-          <Todolist todolistName={td.title} todolistId={td.id} key={td.id} />
+          <Todolist
+            todolistName={td.title}
+            todolistId={td.id}
+            dateCreated={td.dateCreated || "Unknown Date"}
+            key={td.id}
+          />
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { ref, set, remove, onValue, update } from "firebase/database";
 import { Task } from "../redux/taskSlice";
 import { database } from "./firebaseConfig";
+import { Todolist } from "../redux/todolistsSlice";
 
 //------------------------------------Tasks-------------------------------------------//
 
@@ -45,18 +46,26 @@ export const updateTaskStatusInFirebase = async (
 //------------------------------------Todolist-------------------------------------------//
 
 export const fetchTodolistsFromFirebase = (
-  callback: (todolists: any) => void
+  callback: (todolists: Todolist[]) => void
 ) => {
   const todolistsRef = ref(database, "todolists/");
   onValue(todolistsRef, (snapshot) => {
-    const todolists = snapshot.val();
-    callback(todolists ? Object.values(todolists) : []);
+    const todolists = snapshot.val() as Record<string, Todolist>; // Приведение типов
+    callback(
+      todolists
+        ? Object.values(todolists).map((td) => ({
+            ...td,
+            dateCreated: td.dateCreated || new Date().toISOString(), // Обработка dateCreated
+          }))
+        : []
+    );
   });
 };
 
 export const addTodolistToFirebase = (todolistId: string, title: string) => {
   const todolistRef = ref(database, "todolists/" + todolistId);
-  return set(todolistRef, { id: todolistId, title });
+  const dateCreated = new Date().toISOString();
+  return set(todolistRef, { id: todolistId, title, dateCreated });
 };
 
 export const removeTodolistFromFirebase = async (todolistId: string) => {
