@@ -9,6 +9,7 @@ import {
 export type Todolist = {
   id: string;
   title: string;
+  dateCreated?: string;
 };
 
 export type TodolistsState = {
@@ -39,12 +40,12 @@ const todolistsSlice = createSlice({
       })
       .addCase(fetchTodolistsAsync.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string; // Сохраняем сообщение об ошибке
+        state.error = action.payload as string;
       })
 
       .addCase(addTodolistAsync.pending, (state) => {
         state.loading = true;
-        state.error = null; // Сбрасываем ошибку
+        state.error = null;
       })
       .addCase(addTodolistAsync.fulfilled, (state, action) => {
         state.loading = false;

@@ -16,9 +16,14 @@ import {
 type TodolistProps = {
   todolistName: string;
   todolistId: string;
+  dateCreated: string;
 };
 
-export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
+export const Todolist = ({
+  todolistName,
+  todolistId,
+  dateCreated,
+}: TodolistProps) => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const dispatch = useAppDispatch();
@@ -51,6 +56,7 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
       setNewTaskTitle("");
     }
   };
+  const formattedDate = new Date(dateCreated).toLocaleString();
 
   return (
     <div className={s.todolist}>
@@ -79,6 +85,9 @@ export const Todolist = ({ todolistName, todolistId }: TodolistProps) => {
             />
           ))}
         </div>
+      </div>
+      <div className={s.todolistDateCreateBlock}>
+        <span className={s.todolistDateCreate}>Created: {formattedDate}</span>
       </div>
     </div>
   );
