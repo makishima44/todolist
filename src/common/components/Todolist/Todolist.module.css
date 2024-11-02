@@ -1,3 +1,13 @@
+::-webkit-scrollbar {
+  width: 12px; /* Ширина вертикального скроллбара */
+  height: 12px; /* Высота горизонтального скроллбара */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #003366; /* Цвет ползунка */
+  border-radius: 10px; /* Скругление углов */
+  border: 4px solid #fff; /* Внутренний отступ внутри ползунка */
+}
+
 .todolist {
   color: #003366;
   margin: 15px;
@@ -36,8 +46,7 @@
   height: 100vh;
   max-height: 350px;
   overflow-y: auto;
-  padding-right: 10px;
-  border: 1px solid #ccc;
+  box-sizing: border-box;
   padding: 5px;
 }
 
