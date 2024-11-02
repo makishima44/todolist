@@ -8,8 +8,12 @@
   border-radius: 8px;
   background-color: #cce7ff;
   max-width: 300px;
-
   height: 40px;
+}
+
+.clockContainer:hover {
+  background-color: #99c2e6;
+  box-shadow: 0 0 3px 3px rgba(229, 244, 244, 0.8);
 }
 
 .dateText,
