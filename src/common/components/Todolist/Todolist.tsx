@@ -7,11 +7,9 @@ import { Input } from "../Input/Input";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { Task } from "../Task/Task";
 import { addTaskAsync, fetchTasksAsync } from "../../../redux/taskThunk";
-import {
-  fetchTodolistsAsync,
-  removeTodolistAsync,
-  updateTodolistTitleAsync,
-} from "../../../redux/todolistThunk";
+import { fetchTodolistsAsync, removeTodolistAsync, updateTodolistTitleAsync } from "../../../redux/todolistThunk";
+
+
 
 type TodolistProps = {
   todolistName: string;
@@ -19,17 +17,11 @@ type TodolistProps = {
   dateCreated: string;
 };
 
-export const Todolist = ({
-  todolistName,
-  todolistId,
-  dateCreated,
-}: TodolistProps) => {
+export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProps) => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const dispatch = useAppDispatch();
-  const tasks = useSelector(
-    (state: RootState) => state.tasks[todolistId] || []
-  );
+  const tasks = useSelector((state: RootState) => state.tasks[todolistId] || []);
 
   useEffect(() => {
     dispatch(fetchTasksAsync(todolistId));
@@ -61,10 +53,7 @@ export const Todolist = ({
   return (
     <div className={s.todolist}>
       <div className={s.todolistTitleBlock}>
-        <EditableTitle
-          title={todolistName}
-          onChange={handleChangeTodolisTitle}
-        ></EditableTitle>
+        <EditableTitle title={todolistName} onChange={handleChangeTodolisTitle}></EditableTitle>
         <Button useIcon={true} onClick={handleDeleteTodolist} type="delete" />
       </div>
 
