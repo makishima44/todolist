@@ -8,12 +8,13 @@ import {
   updateTodolistTitleInFirebase,
 } from "../fireBase/firebaseAction";
 
+// Асинхронный экшен для получения тудулистов
 export const fetchTodolistsAsync = createAsyncThunk(
   "todolists/fetchTodolistsAsync",
-  async (_, { rejectWithValue }) => {
+  async (uid: string, { rejectWithValue }) => {
     try {
       const todolists = await new Promise<Todolist[]>((resolve) => {
-        fetchTodolistsFromFirebase((todolists) => {
+        fetchTodolistsFromFirebase(uid, (todolists) => {
           resolve(todolists);
         });
       });
@@ -24,16 +25,17 @@ export const fetchTodolistsAsync = createAsyncThunk(
   }
 );
 
+// Асинхронный экшен для добавления нового тудулиста
 export const addTodolistAsync = createAsyncThunk(
   "todolists/addTodolistAsync",
-  async (title: string, { rejectWithValue }) => {
+  async ({ uid, title }: { uid: string; title: string }, { rejectWithValue }) => {
     try {
       const newTodolist: Todolist = {
         id: v1(),
         title,
         dateCreated: new Date().toISOString(),
       };
-      await addTodolistToFirebase(newTodolist.id, title);
+      await addTodolistToFirebase(uid, newTodolist.id, title);
       return newTodolist;
     } catch (error) {
       return rejectWithValue("Failed to add todolist");
@@ -41,11 +43,12 @@ export const addTodolistAsync = createAsyncThunk(
   }
 );
 
+// Асинхронный экшен для удаления тудулиста
 export const removeTodolistAsync = createAsyncThunk(
   "todolists/removeTodolistAsync",
-  async (todolistId: string, { rejectWithValue }) => {
+  async ({ uid, todolistId }: { uid: string; todolistId: string }, { rejectWithValue }) => {
     try {
-      await removeTodolistFromFirebase(todolistId);
+      await removeTodolistFromFirebase(uid, todolistId);
       return todolistId;
     } catch (error) {
       return rejectWithValue("Failed to remove todolist");
@@ -53,15 +56,13 @@ export const removeTodolistAsync = createAsyncThunk(
   }
 );
 
+// Асинхронный экшен для обновления заголовка тудулиста
 export const updateTodolistTitleAsync = createAsyncThunk(
   "todolists/updateTodolistTitleAsync",
-  async (
-    payload: { todolistId: string; title: string },
-    { rejectWithValue }
-  ) => {
+  async ({ uid, todolistId, title }: { uid: string; todolistId: string; title: string }, { rejectWithValue }) => {
     try {
-      await updateTodolistTitleInFirebase(payload.todolistId, payload.title);
-      return payload;
+      await updateTodolistTitleInFirebase(uid, todolistId, title);
+      return { todolistId, title };
     } catch (error) {
       return rejectWithValue("Failed to update todolist title");
     }
