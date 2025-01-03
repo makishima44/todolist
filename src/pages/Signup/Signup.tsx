@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../fireBase/firebaseConfig";
+
 import { FirebaseError } from "firebase/app";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../redux/authSlice";
+
 import { useNavigate } from "react-router-dom"; // Для редиректа после успешного входа
+import { setUser } from "../../redux/authSlice";
+import { auth } from "../../fireBase/firebaseConfig";
 
 export const Signup = () => {
   const [email, setEmail] = useState<string>("");

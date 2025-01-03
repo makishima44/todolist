@@ -18,7 +18,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     // Действие для установки данных пользователя
-    setUser(state, action: PayloadAction<{ uid: string; email: string | null }>) {
+    setUser(state, action: PayloadAction<{ uid: string | null; email: string | null }>) {
       state.uid = action.payload.uid;
       state.email = action.payload.email;
     },
