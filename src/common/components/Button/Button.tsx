@@ -10,13 +10,7 @@ export type ButtonProps = {
   useIcon?: boolean;
 };
 
-export const Button = ({
-  name,
-  onClick,
-  type = "add",
-  disabled,
-  useIcon,
-}: ButtonProps) => {
+export const Button = ({ name, onClick, type = "add", disabled, useIcon }: ButtonProps) => {
   let icon;
 
   if (type === "delete") {
@@ -25,11 +19,7 @@ export const Button = ({
     icon = addIcon;
   }
   return (
-    <button
-      className={`${s.button} ${type === "delete" ? s.delete : s.add}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={`${s.button} ${type === "delete" ? s.delete : s.add}`} onClick={onClick} disabled={disabled}>
       {useIcon && icon && <img src={icon} alt={type} />}
       {!useIcon && name && <span>{name}</span>}
     </button>
