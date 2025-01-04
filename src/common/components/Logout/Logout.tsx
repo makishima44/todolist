@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 
-const Logout = () => {
+export const Logout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -26,5 +26,3 @@ const Logout = () => {
 
   return <Button name={"Exit"} onClick={handleLogout}></Button>;
 };
-
-export default Logout;

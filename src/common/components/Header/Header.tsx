@@ -6,7 +6,7 @@ import { Clock } from "../Clock/Clock";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Weather } from "../Weather/Weather";
 import { addTodolistAsync } from "../../../redux/todolistThunk";
-import Logout from "../Logout/Logout";
+import { Logout } from "../Logout/Logout";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
