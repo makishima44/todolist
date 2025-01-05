@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.loginBlock {
+.signupBlock {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,18 +22,4 @@
   align-items: center;
   margin-bottom: 20px;
   width: 100%;
-}
-
-.link {
-  color: #99c2e6;
-}
-
-label {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-p {
-  font-size: 20px;
-  font-weight: 600;
 }

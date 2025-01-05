@@ -55,7 +55,7 @@ export const Login = () => {
   };
 
   return (
-    <div className={s.mainBlock}>
+    <div className={s.main}>
       <div className={s.loginBlock}>
         <form onSubmit={handleLogin}>
           <div className={s.formGroup}>
@@ -64,9 +64,10 @@ export const Login = () => {
               type={"email"}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={"Введите email"}
+              placeholder={"Введите логин"}
             />
           </div>
+
           <div className={s.formGroup}>
             <label htmlFor="email">Password</label>
             <Input
@@ -81,7 +82,10 @@ export const Login = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
         </form>
         <p>
-          Нет аккаунта? <Link to="/signup">Зарегистрируйтесь</Link>
+          Нет аккаунта?{" "}
+          <Link to="/signup" className={s.link}>
+            Зарегистрируйтесь
+          </Link>
         </p>
       </div>
     </div>
