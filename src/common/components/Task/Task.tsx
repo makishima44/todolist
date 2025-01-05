@@ -40,7 +40,7 @@ export const Task = ({ taskName, todolistId, taskId, taskStatus }: TaskProps) =>
         <EditableTitle title={taskName} onChange={handleChangeTaskTitle}></EditableTitle>
       </div>
 
-      <Button useIcon={true} onClick={handleDeleteTask} type="delete" />
+      <Button useIcon={true} onClick={handleDeleteTask} variant="delete" />
     </div>
   );
 };

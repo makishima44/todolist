@@ -4,23 +4,24 @@ import addIcon from "../../assets/img/icons8-add-24.png";
 
 export type ButtonProps = {
   name?: string;
-  onClick: () => void;
-  type?: "add" | "delete";
+  onClick?: () => void;
+  variant?: "add" | "delete";
   disabled?: boolean;
   useIcon?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
-export const Button = ({ name, onClick, type = "add", disabled, useIcon }: ButtonProps) => {
-  let icon;
+export const Button = ({ name, type = "button", disabled, onClick, variant = "add", useIcon }: ButtonProps) => {
+  const icon = variant === "delete" ? deleteIcon : addIcon;
 
-  if (type === "delete") {
-    icon = deleteIcon;
-  } else if (type === "add") {
-    icon = addIcon;
-  }
   return (
-    <button className={`${s.button} ${type === "delete" ? s.delete : s.add}`} onClick={onClick} disabled={disabled}>
-      {useIcon && icon && <img src={icon} alt={type} />}
+    <button
+      className={`${s.button} ${variant === "delete" ? s.delete : s.add}`}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {useIcon && icon && <img src={icon} alt={variant} />}
       {!useIcon && name && <span>{name}</span>}
     </button>
   );

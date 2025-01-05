@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../fireBase/firebaseConfig";
 import { FirebaseError } from "firebase/app";
-import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../redux/store";
+import { useAppDispatch } from "../../redux/store";
+import { Input } from "../../common/components/Input/Input";
+import { Button } from "../../common/components/Button/Button";
+
+import s from "./Login.module.css";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const uid = useAppSelector((state) => state.auth.uid);
-  const dispatch = useDispatch(); // Для обновления данных пользователя в Redux
+
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +26,7 @@ export const Login = () => {
 
     if (storedToken && storedUid && storedEmail) {
       dispatch(setUser({ uid: storedUid, email: storedEmail }));
-      navigate("/"); // Редирект на главную страницу
+      navigate("/");
     }
   }, [dispatch, navigate]);
 
@@ -32,16 +36,13 @@ export const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const { user } = userCredential;
-
       const token = await user.getIdToken();
 
       localStorage.setItem("authToken", token);
       localStorage.setItem("userEmail", email);
       localStorage.setItem("userUid", user.uid);
 
-      // Сохраняем данные о пользователе в Redux
       dispatch(setUser({ uid: user.uid, email: user.email }));
-
       alert("Вы успешно вошли в систему!");
       setError(null);
     } catch (err) {
@@ -54,28 +55,35 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Введите email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Введите пароль"
-          required
-        />
-        <button type="submit">Войти</button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
-      <p>
-        Нет аккаунта? <Link to="/signup">Зарегистрируйтесь</Link>
-      </p>
-    </>
+    <div className={s.mainBlock}>
+      <div className={s.loginBlock}>
+        <form onSubmit={handleLogin}>
+          <div className={s.formGroup}>
+            <label htmlFor="email">Login</label>
+            <Input
+              type={"email"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={"Введите email"}
+            />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="email">Password</label>
+            <Input
+              type={"password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={"Введите пароль"}
+            />
+            <Button name={"Enter"} type={"submit"} />
+          </div>
+
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </form>
+        <p>
+          Нет аккаунта? <Link to="/signup">Зарегистрируйтесь</Link>
+        </p>
+      </div>
+    </div>
   );
 };

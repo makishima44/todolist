@@ -64,12 +64,12 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
     <div className={s.todolist}>
       <div className={s.todolistTitleBlock}>
         <EditableTitle title={todolistName} onChange={handleChangeTodolisTitle}></EditableTitle>
-        <Button useIcon={true} onClick={handleDeleteTodolist} type="delete" />
+        <Button useIcon={true} onClick={handleDeleteTodolist} variant="delete" />
       </div>
 
       <div className={s.taskBlock}>
         <div className={s.taskMenu}>
-          <Input onChange={handleInputChange} value={newTaskTitle} />
+          <Input type={"text"} onChange={handleInputChange} value={newTaskTitle} />
           <Button useIcon={true} onClick={handleAddTask} />
         </div>
 

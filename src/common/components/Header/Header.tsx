@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "./Header.module.css";
+
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { Clock } from "../Clock/Clock";
@@ -8,10 +8,13 @@ import { Weather } from "../Weather/Weather";
 import { addTodolistAsync } from "../../../redux/todolistThunk";
 import { Logout } from "../Logout/Logout";
 
+import s from "./Header.module.css";
+
 export const Header = () => {
-  const dispatch = useAppDispatch();
   const [todolistName, setTodolistName] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const dispatch = useAppDispatch();
   const isLoading = useAppSelector((state) => state.todolists.loading);
   const uid = useAppSelector((state) => state.auth.uid);
 
@@ -26,7 +29,7 @@ export const Header = () => {
       }
 
       setTodolistName("");
-      setErrorMessage(null); // Очистить сообщение об ошибке после успешной отправки
+      setErrorMessage(null);
     }
   };
 
@@ -37,11 +40,12 @@ export const Header = () => {
   return (
     <div className={s.header}>
       <div className={s.todolistContainer}>
-        <Input onChange={handleInputChange} value={todolistName} />
+        <Input type={"text"} onChange={handleInputChange} value={todolistName} />
         <Button name={"Create Todolist"} onClick={handleCreateTodolist} disabled={isLoading} />
         <Logout />
       </div>
-      {errorMessage && <div className={s.errorMessage}>{errorMessage}</div>} {/* Отображение ошибки */}
+
+      {errorMessage && <div className={s.errorMessage}>{errorMessage}</div>}
       <div className={s.weatherAndClockContainer}>
         <Weather location={"Mogilev, Belarus"} />
         <Clock />
