@@ -8,6 +8,7 @@ import { fetchTodolistsAsync } from "../../redux/todolistThunk";
 
 import "swiper/css";
 import s from "./Main.module.css";
+import { Footer } from "../../common/components/Footer/Footer";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ export const Main = () => {
           ))
         )}
       </div>
+      <Footer />
     </div>
   );
 };
