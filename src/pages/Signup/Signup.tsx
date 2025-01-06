@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { FirebaseError } from "firebase/app";
-import { setUser } from "../../redux/authSlice";
+import { setUser } from "../../redux/slices/auth/authSlice";
 import { auth } from "../../fireBase/firebaseConfig";
 
 import s from "./Signup.module.css";

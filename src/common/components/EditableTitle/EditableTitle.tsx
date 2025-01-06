@@ -28,7 +28,7 @@ export const EditableTitle = ({ title, onChange }: EditableTitleProps) => {
       {editMode ? (
         <input value={newTitle} onChange={onChangeTitle} onBlur={saveTitle} autoFocus className={s.editableInput} />
       ) : (
-        <span onDoubleClick={activateEditMode} className={s.editableTitle}>
+        <span onClick={activateEditMode} className={s.editableTitle}>
           {title}
         </span>
       )}

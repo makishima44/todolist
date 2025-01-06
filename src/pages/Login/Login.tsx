@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../fireBase/firebaseConfig";
 import { FirebaseError } from "firebase/app";
-import { setUser } from "../../redux/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
 import { Input } from "../../common/components/Input/Input";
 import { Button } from "../../common/components/Button/Button";
 
 import s from "./Login.module.css";
+import { setUser } from "../../redux/slices/auth/authSlice";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");

@@ -6,7 +6,7 @@ import {
   fetchTodolistsFromFirebase,
   removeTodolistFromFirebase,
   updateTodolistTitleInFirebase,
-} from "../fireBase/firebaseAction";
+} from "../../../fireBase/firebaseAction";
 
 // Асинхронный экшен для получения тудулистов
 export const fetchTodolistsAsync = createAsyncThunk(

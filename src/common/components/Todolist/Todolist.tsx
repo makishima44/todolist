@@ -6,8 +6,12 @@ import { useEffect, useState } from "react";
 import { Input } from "../Input/Input";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { Task } from "../Task/Task";
-import { addTaskAsync, fetchTasksAsync } from "../../../redux/taskThunk";
-import { fetchTodolistsAsync, removeTodolistAsync, updateTodolistTitleAsync } from "../../../redux/todolistThunk";
+import { addTaskAsync, fetchTasksAsync } from "../../../redux/slices/task/taskThunk";
+import {
+  fetchTodolistsAsync,
+  removeTodolistAsync,
+  updateTodolistTitleAsync,
+} from "../../../redux/slices/todolist/todolistThunk";
 
 type TodolistProps = {
   todolistName: string;
@@ -19,7 +23,7 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const dispatch = useAppDispatch();
-  const uid = useSelector((state: RootState) => state.auth.uid); // Получаем uid из состояния auth
+  const uid = useSelector((state: RootState) => state.auth.uid);
   const tasks = useSelector((state: RootState) => state.tasks[todolistId] || []);
 
   useEffect(() => {

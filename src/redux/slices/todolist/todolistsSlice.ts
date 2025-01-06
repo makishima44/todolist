@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  addTodolistAsync,
-  fetchTodolistsAsync,
-  removeTodolistAsync,
-  updateTodolistTitleAsync,
-} from "./todolistThunk";
+import { addTodolistAsync, fetchTodolistsAsync, removeTodolistAsync, updateTodolistTitleAsync } from "./todolistThunk";
 
 export type Todolist = {
   id: string;
@@ -58,9 +53,7 @@ const todolistsSlice = createSlice({
 
       .addCase(removeTodolistAsync.fulfilled, (state, action) => {
         const todolistId = action.payload;
-        state.todolists = state.todolists.filter(
-          (todolist) => todolist.id !== todolistId
-        );
+        state.todolists = state.todolists.filter((todolist) => todolist.id !== todolistId);
       })
       .addCase(removeTodolistAsync.rejected, (state, action) => {
         state.error = action.payload as string; // Сохраняем сообщение об ошибке
@@ -68,9 +61,7 @@ const todolistsSlice = createSlice({
 
       .addCase(updateTodolistTitleAsync.fulfilled, (state, action) => {
         const { todolistId, title } = action.payload;
-        const todo = state.todolists.find(
-          (todolist) => todolist.id === todolistId
-        );
+        const todo = state.todolists.find((todolist) => todolist.id === todolistId);
         if (todo) {
           todo.title = title;
         }

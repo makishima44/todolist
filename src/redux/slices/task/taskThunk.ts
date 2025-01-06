@@ -7,9 +7,8 @@ import {
   fetchTasksFromFirebase,
   updateTaskStatusInFirebase,
   updateTaskTitleInFirebase,
-} from "../fireBase/firebaseAction";
+} from "../../../fireBase/firebaseAction";
 
-// Асинхронный экшен для загрузки задач
 export const fetchTasksAsync = createAsyncThunk(
   "tasks/fetchTasksAsync",
   async ({ uid, todolistId }: { uid: string; todolistId: string }, { dispatch }) => {
@@ -22,7 +21,6 @@ export const fetchTasksAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для добавления задачи
 export const addTaskAsync = createAsyncThunk(
   "tasks/addTaskAsync",
   async ({ uid, todolistId, title }: { uid: string; todolistId: string; title: string }, { dispatch }) => {
@@ -36,7 +34,6 @@ export const addTaskAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для удаления задачи
 export const removeTaskAsync = createAsyncThunk(
   "tasks/removeTaskAsync",
   async ({ uid, todolistId, taskId }: { uid: string; todolistId: string; taskId: string }, { dispatch }) => {
@@ -45,7 +42,6 @@ export const removeTaskAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для обновления заголовка задачи
 export const updateTaskTitleAsync = createAsyncThunk(
   "tasks/updateTaskTitleAsync",
   async (
@@ -57,7 +53,6 @@ export const updateTaskTitleAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для изменения статуса задачи
 export const changeTaskStatusAsync = createAsyncThunk(
   "tasks/changeTaskStatusAsync",
   async (

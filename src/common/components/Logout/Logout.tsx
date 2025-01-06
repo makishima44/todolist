@@ -1,7 +1,7 @@
 import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../fireBase/firebaseConfig";
-import { clearUser } from "../../../redux/authSlice";
+import { clearUser } from "../../../redux/slices/auth/authSlice";
 import { useAppDispatch } from "../../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";

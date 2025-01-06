@@ -21,8 +21,6 @@ type TasksState = {
 
 const initialState: TasksState = {};
 
-//-------------------------------THUNK------------------------------------------------
-
 const taskSlice = createSlice({
   name: "tasks",
   initialState,
@@ -45,9 +43,7 @@ const taskSlice = createSlice({
 
       .addCase(removeTaskAsync.fulfilled, (state, action) => {
         const { todolistId, taskId } = action.payload;
-        state[todolistId] = state[todolistId].filter(
-          (task) => task.id !== taskId
-        );
+        state[todolistId] = state[todolistId].filter((task) => task.id !== taskId);
       })
 
       .addCase(updateTaskTitleAsync.fulfilled, (state, action) => {

@@ -2,8 +2,8 @@ import s from "./Task.module.css";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Button } from "../Button/Button";
-import { StatusTask } from "../../../redux/taskSlice";
-import { changeTaskStatusAsync, removeTaskAsync, updateTaskTitleAsync } from "../../../redux/taskThunk";
+import { StatusTask } from "../../../redux/slices/task/taskSlice";
+import { changeTaskStatusAsync, removeTaskAsync, updateTaskTitleAsync } from "../../../redux/slices/task/taskThunk";
 
 type TaskProps = {
   taskName: string;

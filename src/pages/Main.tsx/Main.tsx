@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Todolist } from "../../common/components/Todolist/Todolist";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { Header } from "../../common/components/Header/Header";
-import { fetchTodolistsAsync } from "../../redux/todolistThunk";
+import { fetchTodolistsAsync } from "../../redux/slices/todolist/todolistThunk";
 
 import "swiper/css";
 import s from "./Main.module.css";

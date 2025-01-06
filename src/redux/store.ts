@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { todolistsReducer } from "./todolistsSlice";
-import { tasksReducer } from "./taskSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { authReducer } from "./authSlice";
+
+import { todolistsReducer } from "./slices/todolist/todolistsSlice";
+import { tasksReducer } from "./slices/task/taskSlice";
+import { authReducer } from "./slices/auth/authSlice";
+
 export const store = configureStore({
   reducer: {
     todolists: todolistsReducer,

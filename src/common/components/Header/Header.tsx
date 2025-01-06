@@ -5,7 +5,7 @@ import { Button } from "../Button/Button";
 import { Clock } from "../Clock/Clock";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Weather } from "../Weather/Weather";
-import { addTodolistAsync } from "../../../redux/todolistThunk";
+import { addTodolistAsync } from "../../../redux/slices/todolist/todolistThunk";
 import { Logout } from "../Logout/Logout";
 
 import s from "./Header.module.css";

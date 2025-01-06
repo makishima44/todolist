@@ -5,6 +5,7 @@ import { Login } from "./pages/Login/Login";
 import { Main } from "./pages/Main.tsx/Main";
 import { Signup } from "./pages/Signup/Signup";
 import { ProtectedRoute } from "./common/components/ProtectedRoute/ProtectedRoute";
+import { Widgets } from "./pages/Widgets/Widgets";
 
 const RouterComponent = () => {
   const uid = useAppSelector((state) => state.auth.uid);
@@ -27,6 +28,7 @@ const RouterComponent = () => {
         }
       />
       <Route path="*" element={<Navigate to={uid ? "/" : "/login"} />} />
+      <Route path="/widgets" element={<Widgets />} />
     </Routes>
   );
 };

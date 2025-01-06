@@ -1,7 +1,7 @@
 import { ref, set, remove, onValue, update } from "firebase/database";
-import { Task } from "../redux/taskSlice";
+import { Task } from "../redux/slices/task/taskSlice";
 import { database } from "./firebaseConfig";
-import { Todolist } from "../redux/todolistsSlice";
+import { Todolist } from "../redux/slices/todolist/todolistsSlice";
 
 //------------------------------------Tasks-------------------------------------------//
 
