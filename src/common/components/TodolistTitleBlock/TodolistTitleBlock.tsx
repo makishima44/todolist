@@ -26,9 +26,9 @@ export const TodolistTitleBlock = ({ todolistId, uid, todolistName }: TodolistTi
   };
 
   return (
-    <div>
+    <>
       <EditableTitle title={todolistName} onChange={handleChangeTodolisTitle}></EditableTitle>
       <Button useIcon={true} onClick={handleDeleteTodolist} variant="delete" />
-    </div>
+    </>
   );
 };
