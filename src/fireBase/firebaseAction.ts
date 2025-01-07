@@ -1,4 +1,4 @@
-import { ref, set, remove, onValue, update } from "firebase/database";
+import { ref, set, remove, onValue, update, getDatabase } from "firebase/database";
 import { Task } from "../redux/slices/task/taskSlice";
 import { database } from "./firebaseConfig";
 import { Todolist } from "../redux/slices/todolist/todolistsSlice";
@@ -21,6 +21,12 @@ export const addTaskToFirebase = (uid: string, todolistId: string, task: Task) =
 export const deleteTaskFromFirebase = (uid: string, todolistId: string, taskId: string) => {
   const taskRef = ref(database, `users/${uid}/tasks/${todolistId}/${taskId}`);
   return remove(taskRef);
+};
+
+export const deleteAllTasksFromFirebase = async (uid: string, todolistId: string) => {
+  const db = getDatabase(); // Получаем ссылку на базу данных
+  const tasksRef = ref(db, `users/${uid}/tasks/${todolistId}`); // Ссылка на задачи в Firebase
+  await remove(tasksRef); // Удаляем данные
 };
 
 export const updateTaskTitleInFirebase = async (uid: string, todolistId: string, taskId: string, newTitle: string) => {
@@ -62,7 +68,7 @@ export const addTodolistToFirebase = (uid: string, todolistId: string, title: st
 
 export const removeTodolistFromFirebase = async (uid: string, todolistId: string) => {
   const todolistRef = ref(database, `users/${uid}/todolists/${todolistId}`);
-  const tasksRef = ref(database, `tasks/${todolistId}`);
+  const tasksRef = ref(database, `users/${uid}/tasks/${todolistId}`);
   await remove(todolistRef);
   await remove(tasksRef);
 };

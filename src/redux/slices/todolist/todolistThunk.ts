@@ -3,12 +3,12 @@ import { Todolist } from "./todolistsSlice";
 import { v1 } from "uuid";
 import {
   addTodolistToFirebase,
+  deleteAllTasksFromFirebase,
   fetchTodolistsFromFirebase,
   removeTodolistFromFirebase,
   updateTodolistTitleInFirebase,
 } from "../../../fireBase/firebaseAction";
 
-// Асинхронный экшен для получения тудулистов
 export const fetchTodolistsAsync = createAsyncThunk(
   "todolists/fetchTodolistsAsync",
   async (uid: string, { rejectWithValue }) => {
@@ -25,7 +25,6 @@ export const fetchTodolistsAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для добавления нового тудулиста
 export const addTodolistAsync = createAsyncThunk(
   "todolists/addTodolistAsync",
   async ({ uid, title }: { uid: string; title: string }, { rejectWithValue }) => {
@@ -43,12 +42,11 @@ export const addTodolistAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для удаления тудулиста
 export const removeTodolistAsync = createAsyncThunk(
   "todolists/removeTodolistAsync",
   async ({ uid, todolistId }: { uid: string; todolistId: string }, { rejectWithValue }) => {
     try {
-      await removeTodolistFromFirebase(uid, todolistId);
+      await Promise.all([removeTodolistFromFirebase(uid, todolistId), deleteAllTasksFromFirebase(uid, todolistId)]);
       return todolistId;
     } catch (error) {
       return rejectWithValue("Failed to remove todolist");
@@ -56,7 +54,6 @@ export const removeTodolistAsync = createAsyncThunk(
   }
 );
 
-// Асинхронный экшен для обновления заголовка тудулиста
 export const updateTodolistTitleAsync = createAsyncThunk(
   "todolists/updateTodolistTitleAsync",
   async ({ uid, todolistId, title }: { uid: string; todolistId: string; title: string }, { rejectWithValue }) => {

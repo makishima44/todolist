@@ -48,7 +48,7 @@ const todolistsSlice = createSlice({
       })
       .addCase(addTodolistAsync.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string; // Сохраняем сообщение об ошибке
+        state.error = action.payload as string;
       })
 
       .addCase(removeTodolistAsync.fulfilled, (state, action) => {
@@ -56,7 +56,7 @@ const todolistsSlice = createSlice({
         state.todolists = state.todolists.filter((todolist) => todolist.id !== todolistId);
       })
       .addCase(removeTodolistAsync.rejected, (state, action) => {
-        state.error = action.payload as string; // Сохраняем сообщение об ошибке
+        state.error = action.payload as string;
       })
 
       .addCase(updateTodolistTitleAsync.fulfilled, (state, action) => {
@@ -67,7 +67,7 @@ const todolistsSlice = createSlice({
         }
       })
       .addCase(updateTodolistTitleAsync.rejected, (state, action) => {
-        state.error = action.payload as string; // Сохраняем сообщение об ошибке
+        state.error = action.payload as string;
       });
   },
 });

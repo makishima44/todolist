@@ -6,6 +6,7 @@ import {
   removeTaskAsync,
   updateTaskTitleAsync,
 } from "./taskThunk";
+import { removeTodolistAsync } from "../todolist/todolistThunk";
 
 export type StatusTask = "all" | "active" | "complete";
 
@@ -62,6 +63,11 @@ const taskSlice = createSlice({
         if (task) {
           task.status = status;
         }
+      })
+
+      .addCase(removeTodolistAsync.fulfilled, (state, action) => {
+        const todolistId = action.payload;
+        delete state[todolistId];
       });
   },
 });
