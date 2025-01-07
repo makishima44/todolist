@@ -1,62 +1,31 @@
 import s from "./Todolist.module.css";
-import { useSelector } from "react-redux";
-import { Button } from "../Button/Button";
-import { EditableTitle } from "../EditableTitle/EditableTitle";
-import { useEffect, useState } from "react";
-import { Input } from "../Input/Input";
-import { RootState, useAppDispatch } from "../../../redux/store";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Task } from "../Task/Task";
-import { addTaskAsync, fetchTasksAsync } from "../../../redux/slices/task/taskThunk";
-import {
-  fetchTodolistsAsync,
-  removeTodolistAsync,
-  updateTodolistTitleAsync,
-} from "../../../redux/slices/todolist/todolistThunk";
+import { fetchTasksAsync } from "../../../redux/slices/task/taskThunk";
+import { FilteredButtonBlock } from "../FilteredButtonBlock/FilteredButtonBlock";
+import { TodolistTitleBlock } from "../TodolistTitleBlock/TodolistTitleBlock";
+import { TaskMenu } from "../TaskMenu/TaskMenu";
 
-type TodolistProps = {
-  todolistName: string;
-  todolistId: string;
-  dateCreated: string;
-};
+type TodolistProps = { todolistName: string; todolistId: string; dateCreated: string };
 
 export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProps) => {
-  const [newTaskTitle, setNewTaskTitle] = useState("");
-
   const dispatch = useAppDispatch();
-  const uid = useSelector((state: RootState) => state.auth.uid);
-  const tasks = useSelector((state: RootState) => state.tasks[todolistId] || []);
+
+  const uid = useAppSelector((state) => state.auth.uid);
+  const tasks = useAppSelector((state) => state.tasks.tasks[todolistId] || []);
+  const status = useAppSelector((state) => state.tasks.filteredStatus);
+
+  const filteredTasks = tasks.filter((task) => {
+    if (status === "all") return true;
+    return task.status === status;
+  });
 
   useEffect(() => {
     if (uid) {
       dispatch(fetchTasksAsync({ todolistId, uid }));
     }
   }, [dispatch, todolistId, uid]);
-
-  const handleDeleteTodolist = () => {
-    if (uid) {
-      dispatch(removeTodolistAsync({ todolistId, uid }));
-      dispatch(fetchTodolistsAsync(uid));
-    }
-  };
-
-  const handleChangeTodolisTitle = (newTitle: string) => {
-    if (uid) {
-      dispatch(updateTodolistTitleAsync({ todolistId, title: newTitle, uid }));
-    }
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitle(event.target.value);
-  };
-
-  const handleAddTask = () => {
-    if (newTaskTitle.length < 4) {
-      alert("Name should be more than 4 symbols");
-    } else if (uid) {
-      dispatch(addTaskAsync({ todolistId, title: newTaskTitle, uid }));
-      setNewTaskTitle("");
-    }
-  };
 
   const formattedDate = new Date(dateCreated).toLocaleString();
 
@@ -67,18 +36,16 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
   return (
     <div className={s.todolist}>
       <div className={s.todolistTitleBlock}>
-        <EditableTitle title={todolistName} onChange={handleChangeTodolisTitle}></EditableTitle>
-        <Button useIcon={true} onClick={handleDeleteTodolist} variant="delete" />
+        <TodolistTitleBlock uid={uid} todolistId={todolistId} todolistName={todolistName} />
       </div>
 
       <div className={s.taskBlock}>
         <div className={s.taskMenu}>
-          <Input type={"text"} onChange={handleInputChange} value={newTaskTitle} />
-          <Button useIcon={true} onClick={handleAddTask} />
+          <TaskMenu todolistId={todolistId} uid={uid} />
         </div>
 
         <div className={s.taskList}>
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <Task
               key={task.id}
               taskName={task.title}
@@ -88,6 +55,10 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
             />
           ))}
         </div>
+      </div>
+
+      <div className={s.filterBlock}>
+        <FilteredButtonBlock />
       </div>
 
       <div className={s.todolistDateCreateBlock}>
