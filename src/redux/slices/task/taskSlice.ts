@@ -7,25 +7,12 @@ import {
   updateTaskTitleAsync,
 } from "./taskThunk";
 import { removeTodolistAsync } from "../todolist/todolistThunk";
+import { TasksState } from "../../types/types";
 
-export type StatusTask = "all" | "active" | "complete";
-
-export type Task = {
-  id: string;
-  title: string;
-  status: StatusTask;
-};
-
-type TasksState = {
-  tasks: {
-    [todolistId: string]: Task[]; // Ключ - id тудулиста, значение - массив задач
-  };
-  filteredStatus: StatusTask;
-};
 
 const initialState: TasksState = {
   tasks: {},
-  filteredStatus: "all",
+  filteredStatus: {},
 };
 
 const taskSlice = createSlice({
@@ -33,7 +20,8 @@ const taskSlice = createSlice({
   initialState,
   reducers: {
     setFilter(state, action) {
-      state.filteredStatus = action.payload;
+      const { todolistId, filter } = action.payload;
+      state.filteredStatus[todolistId] = filter;
     },
   },
   extraReducers: (builder) => {

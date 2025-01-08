@@ -40,7 +40,6 @@ export const Main = () => {
             {todolists.map((td) => (
               <SwiperSlide key={td.id}>
                 {" "}
-                {/* Добавляем ключ на SwiperSlide */}
                 <Todolist todolistName={td.title} todolistId={td.id} dateCreated={td.dateCreated || "Unknown Date"} />
               </SwiperSlide>
             ))}

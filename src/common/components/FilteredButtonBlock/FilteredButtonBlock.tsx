@@ -1,13 +1,18 @@
-import React from "react";
 import { Button } from "../Button/Button";
 import { useAppDispatch } from "../../../redux/store";
-import { setFilter, StatusTask } from "../../../redux/slices/task/taskSlice";
+import { setFilter } from "../../../redux/slices/task/taskSlice";
+import { StatusTask } from "../../../redux/types/types";
+import { memo } from "react";
 
-export const FilteredButtonBlock = () => {
+type FilteredButtonBlockProps = {
+  todolistId: string;
+};
+
+export const FilteredButtonBlock = memo(({ todolistId }: FilteredButtonBlockProps) => {
   const dispatch = useAppDispatch();
 
   const changeTasksStatusFilter = (filter: StatusTask) => {
-    dispatch(setFilter(filter));
+    dispatch(setFilter({ todolistId, filter }));
   };
 
   return (
@@ -17,4 +22,4 @@ export const FilteredButtonBlock = () => {
       <Button name="complete" onClick={() => changeTasksStatusFilter("complete")} />
     </>
   );
-};
+});

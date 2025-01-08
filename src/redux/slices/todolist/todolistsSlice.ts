@@ -1,17 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addTodolistAsync, fetchTodolistsAsync, removeTodolistAsync, updateTodolistTitleAsync } from "./todolistThunk";
-
-export type Todolist = {
-  id: string;
-  title: string;
-  dateCreated?: string;
-};
-
-export type TodolistsState = {
-  todolists: Todolist[];
-  loading: boolean;
-  error: string | null;
-};
+import { TodolistsState } from "../../types/types";
 
 const initialState: TodolistsState = {
   todolists: [],
@@ -27,7 +16,7 @@ const todolistsSlice = createSlice({
     builder
       .addCase(fetchTodolistsAsync.pending, (state) => {
         state.loading = true;
-        state.error = null; // Сбрасываем ошибку
+        state.error = null;
       })
       .addCase(fetchTodolistsAsync.fulfilled, (state, action) => {
         state.todolists = action.payload;

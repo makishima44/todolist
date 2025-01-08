@@ -6,10 +6,11 @@ import {
   removeTodolistAsync,
   updateTodolistTitleAsync,
 } from "../../../redux/slices/todolist/todolistThunk";
+import { memo } from "react";
 
 type TodolistTitleBlock = { uid: string; todolistName: string; todolistId: string };
 
-export const TodolistTitleBlock = ({ todolistId, uid, todolistName }: TodolistTitleBlock) => {
+export const TodolistTitleBlock = memo(({ todolistId, uid, todolistName }: TodolistTitleBlock) => {
   const dispatch = useAppDispatch();
 
   const handleChangeTodolisTitle = (newTitle: string) => {
@@ -31,4 +32,4 @@ export const TodolistTitleBlock = ({ todolistId, uid, todolistName }: TodolistTi
       <Button useIcon={true} onClick={handleDeleteTodolist} variant="delete" />
     </>
   );
-};
+});

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
@@ -33,9 +33,9 @@ export const Header = () => {
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setTodolistName(event.target.value);
-  };
+  }, []);
 
   return (
     <div className={s.header}>

@@ -1,9 +1,11 @@
-import s from "./Task.module.css";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Button } from "../Button/Button";
-import { StatusTask } from "../../../redux/slices/task/taskSlice";
 import { changeTaskStatusAsync, removeTaskAsync, updateTaskTitleAsync } from "../../../redux/slices/task/taskThunk";
+import { StatusTask } from "../../../redux/types/types";
+
+import s from "./Task.module.css";
+import { memo } from "react";
 
 type TaskProps = {
   taskName: string;
@@ -12,12 +14,12 @@ type TaskProps = {
   taskStatus: StatusTask;
 };
 
-export const Task = ({ taskName, todolistId, taskId, taskStatus }: TaskProps) => {
+export const Task = memo(({ taskName, todolistId, taskId, taskStatus }: TaskProps) => {
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state) => state.auth.uid);
 
   if (!uid) {
-    return <div>Unauthorized</div>; // Если uid нет, то показываем сообщение
+    return <div>Unauthorized</div>;
   }
 
   const handleDeleteTask = () => {
@@ -43,4 +45,4 @@ export const Task = ({ taskName, todolistId, taskId, taskStatus }: TaskProps) =>
       <Button useIcon={true} onClick={handleDeleteTask} variant="delete" />
     </div>
   );
-};
+});

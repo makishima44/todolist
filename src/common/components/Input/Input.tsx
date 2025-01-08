@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import s from "./Input.module.css";
 
 export type InputProps = {
@@ -8,6 +8,6 @@ export type InputProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const Input = ({ value, onChange, type, placeholder }: InputProps) => {
+export const Input = memo(({ value, onChange, type, placeholder }: InputProps) => {
   return <input className={s.input} type={type} onChange={onChange} value={value} placeholder={placeholder} />;
-};
+});

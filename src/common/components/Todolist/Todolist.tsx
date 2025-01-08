@@ -1,5 +1,5 @@
 import s from "./Todolist.module.css";
-import { useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { Task } from "../Task/Task";
 import { fetchTasksAsync } from "../../../redux/slices/task/taskThunk";
@@ -9,20 +9,22 @@ import { TaskMenu } from "../TaskMenu/TaskMenu";
 
 type TodolistProps = { todolistName: string; todolistId: string; dateCreated: string };
 
-export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProps) => {
+export const Todolist = memo(({ todolistName, todolistId, dateCreated }: TodolistProps) => {
   const dispatch = useAppDispatch();
 
   const uid = useAppSelector((state) => state.auth.uid);
   const tasks = useAppSelector((state) => state.tasks.tasks[todolistId] || []);
-  const status = useAppSelector((state) => state.tasks.filteredStatus);
+  const status = useAppSelector((state) => state.tasks.filteredStatus[todolistId] || "all");
 
-  const filteredTasks = tasks.filter((task) => {
-    if (status === "all") return true;
-    return task.status === status;
-  });
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      if (status === "all") return true;
+      return task.status === status;
+    });
+  }, [tasks, status]);
 
   useEffect(() => {
-    if (uid) {
+    if (uid && tasks.length === 0) {
       dispatch(fetchTasksAsync({ todolistId, uid }));
     }
   }, [dispatch, todolistId, uid]);
@@ -58,7 +60,7 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
       </div>
 
       <div className={s.filterBlock}>
-        <FilteredButtonBlock />
+        <FilteredButtonBlock todolistId={todolistId} />
       </div>
 
       <div className={s.todolistDateCreateBlock}>
@@ -66,4 +68,4 @@ export const Todolist = ({ todolistName, todolistId, dateCreated }: TodolistProp
       </div>
     </div>
   );
-};
+});

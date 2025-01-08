@@ -25,16 +25,16 @@
   gap: 20px;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 970px) {
   .weatherAndClockContainer {
     display: none;
   }
 }
 
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
   .header {
     flex-direction: column;
     height: auto;
     padding: 10px 20px;
   }
-}
+} */

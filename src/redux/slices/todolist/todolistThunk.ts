@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Todolist } from "./todolistsSlice";
 import { v1 } from "uuid";
 import {
   addTodolistToFirebase,
@@ -8,6 +7,7 @@ import {
   removeTodolistFromFirebase,
   updateTodolistTitleInFirebase,
 } from "../../../fireBase/firebaseAction";
+import { Todolist } from "../../types/types";
 
 export const fetchTodolistsAsync = createAsyncThunk(
   "todolists/fetchTodolistsAsync",

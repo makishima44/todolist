@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import s from "./Clock.module.css";
 
-export const Clock = () => {
+export const Clock = memo(() => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -44,4 +44,4 @@ export const Clock = () => {
       <p className={s.timeText}>{timeString}</p>
     </div>
   );
-};
+});

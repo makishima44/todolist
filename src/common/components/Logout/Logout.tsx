@@ -1,12 +1,13 @@
-import React from "react";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../fireBase/firebaseConfig";
+
 import { clearUser } from "../../../redux/slices/auth/authSlice";
 import { useAppDispatch } from "../../../redux/store";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
+import { memo } from "react";
 
-export const Logout = () => {
+export const Logout = memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -25,4 +26,4 @@ export const Logout = () => {
   };
 
   return <Button name={"Exit"} onClick={handleLogout}></Button>;
-};
+});
