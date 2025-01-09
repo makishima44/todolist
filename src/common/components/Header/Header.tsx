@@ -19,8 +19,8 @@ export const Header = () => {
   const uid = useAppSelector((state) => state.auth.uid);
 
   const handleCreateTodolist = () => {
-    if (todolistName.length < 4) {
-      setErrorMessage("Name should be more than 4 symbols.");
+    if (todolistName.length < 1) {
+      setErrorMessage("Name should be more than 1 symbols.");
     } else if (todolistName.length > 25) {
       setErrorMessage("Name should be less than 25 symbols.");
     } else {
@@ -39,13 +39,15 @@ export const Header = () => {
 
   return (
     <div className={s.header}>
-      <div className={s.todolistContainer}>
-        <Input type={"text"} onChange={handleInputChange} value={todolistName} />
-        <Button name={"Create Todolist"} onClick={handleCreateTodolist} disabled={isLoading} />
-        <Logout />
+      <div className={s.todolistCreateMenu}>
+        <div className={s.todolistContainer}>
+          <Input type={"text"} onChange={handleInputChange} value={todolistName} />
+          <Button name={"Create Todolist"} onClick={handleCreateTodolist} disabled={isLoading} />
+          <Logout />
+        </div>
+        {errorMessage && <div className={s.errorMessage}>{errorMessage}</div>}
       </div>
 
-      {errorMessage && <div className={s.errorMessage}>{errorMessage}</div>}
       <div className={s.weatherAndClockContainer}>
         <Weather location={"Mogilev, Belarus"} />
         <Clock />

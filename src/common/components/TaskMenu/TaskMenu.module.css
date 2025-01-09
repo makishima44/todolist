@@ -4,3 +4,9 @@
   gap: 10px;
   margin-bottom: 15px;
 }
+
+.errorMessage {
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+}

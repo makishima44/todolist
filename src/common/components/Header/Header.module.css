@@ -10,8 +10,13 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  height: 80px;
+  height: 100px;
   box-sizing: border-box;
+}
+
+.todolistCreateMenu {
+  display: flex;
+  flex-direction: column;
 }
 
 .todolistContainer {
@@ -29,6 +34,13 @@
   .weatherAndClockContainer {
     display: none;
   }
+}
+
+.errorMessage {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: red;
 }
 
 /* @media (max-width: 860px) {
