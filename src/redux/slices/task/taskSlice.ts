@@ -9,7 +9,6 @@ import {
 import { removeTodolistAsync } from "../todolist/todolistThunk";
 import { TasksState } from "../../types/types";
 
-
 const initialState: TasksState = {
   tasks: {},
   filteredStatus: {},

@@ -12,7 +12,7 @@ export type ButtonProps = {
   type?: "button" | "submit" | "reset";
 };
 
-export const Button = memo(({ name, type = "button", disabled, onClick, variant = "add", useIcon }: ButtonProps) => {
+export const Button = ({ name, type = "button", disabled, onClick, variant = "add", useIcon }: ButtonProps) => {
   const icon = variant === "delete" ? deleteIcon : addIcon;
 
   return (
@@ -26,4 +26,4 @@ export const Button = memo(({ name, type = "button", disabled, onClick, variant 
       {!useIcon && name && <span>{name}</span>}
     </button>
   );
-});
+};

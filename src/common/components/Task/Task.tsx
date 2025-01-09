@@ -5,7 +5,7 @@ import { changeTaskStatusAsync, removeTaskAsync, updateTaskTitleAsync } from "..
 import { StatusTask } from "../../../redux/types/types";
 
 import s from "./Task.module.css";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 
 type TaskProps = {
   taskName: string;
@@ -18,22 +18,21 @@ export const Task = memo(({ taskName, todolistId, taskId, taskStatus }: TaskProp
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state) => state.auth.uid);
 
-  if (!uid) {
-    return <div>Unauthorized</div>;
-  }
+  const handleDeleteTask = useCallback(() => {
+    if (uid) dispatch(removeTaskAsync({ uid, todolistId, taskId }));
+  }, [dispatch, uid, todolistId, taskId]);
 
-  const handleDeleteTask = () => {
-    dispatch(removeTaskAsync({ uid, todolistId, taskId }));
-  };
-
-  const handleChangeTaskStatus = () => {
+  const handleChangeTaskStatus = useCallback(() => {
     const newStatus = taskStatus === "active" ? "complete" : "active";
-    dispatch(changeTaskStatusAsync({ uid, todolistId, taskId, status: newStatus }));
-  };
+    if (uid) dispatch(changeTaskStatusAsync({ uid, todolistId, taskId, status: newStatus }));
+  }, [taskStatus, dispatch, uid, todolistId, taskId]);
 
-  const handleChangeTaskTitle = (newTitle: string) => {
-    dispatch(updateTaskTitleAsync({ uid, todolistId, taskId, title: newTitle }));
-  };
+  const handleChangeTaskTitle = useCallback(
+    (newTitle: string) => {
+      if (uid) dispatch(updateTaskTitleAsync({ uid, todolistId, taskId, title: newTitle }));
+    },
+    [dispatch, uid, todolistId, taskId]
+  );
 
   return (
     <div className={s.taskBlock}>

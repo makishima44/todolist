@@ -1,11 +1,11 @@
 import { ref, set, remove, onValue, update, getDatabase } from "firebase/database";
 
 import { database } from "./firebaseConfig";
-import { Task, Todolist } from "../redux/types/types";
+import { TaskType, Todolist } from "../redux/types/types";
 
 //------------------------------------Tasks-------------------------------------------//
 
-export const fetchTasksFromFirebase = (uid: string, todolistId: string, callback: (tasks: Task[]) => void) => {
+export const fetchTasksFromFirebase = (uid: string, todolistId: string, callback: (tasks: TaskType[]) => void) => {
   const tasksRef = ref(database, `users/${uid}/tasks/${todolistId}`);
   onValue(tasksRef, (snapshot) => {
     const tasks = snapshot.val();
@@ -13,7 +13,7 @@ export const fetchTasksFromFirebase = (uid: string, todolistId: string, callback
   });
 };
 
-export const addTaskToFirebase = (uid: string, todolistId: string, task: Task) => {
+export const addTaskToFirebase = (uid: string, todolistId: string, task: TaskType) => {
   const taskRef = ref(database, `users/${uid}/tasks/${todolistId}/${task.id}`);
   return set(taskRef, task);
 };

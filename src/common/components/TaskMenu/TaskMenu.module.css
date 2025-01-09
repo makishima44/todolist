@@ -1,0 +1,6 @@
+.taskMenu {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-bottom: 15px;
+}

@@ -5,21 +5,20 @@ import { Todolist } from "../../common/components/Todolist/Todolist";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { Header } from "../../common/components/Header/Header";
 import { fetchTodolistsAsync } from "../../redux/slices/todolist/todolistThunk";
-
+import { Footer } from "../../common/components/Footer/Footer";
 import "swiper/css";
 import s from "./Main.module.css";
-import { Footer } from "../../common/components/Footer/Footer";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
   const todolists = useSelector((state: RootState) => state.todolists.todolists);
   const loading = useSelector((state: RootState) => state.todolists.loading);
   const error = useSelector((state: RootState) => state.todolists.error);
-  const uid = useAppSelector((state) => state.auth.uid); // Получаем uid из состояния
+  const uid = useAppSelector((state) => state.auth.uid);
 
   useEffect(() => {
     if (uid) {
-      dispatch(fetchTodolistsAsync(uid)); // Передаем uid
+      dispatch(fetchTodolistsAsync(uid));
     }
   }, [dispatch, uid]);
 

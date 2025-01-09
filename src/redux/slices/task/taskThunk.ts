@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { StatusTask, Task } from "../../types/types";
+import { StatusTask, TaskType } from "../../types/types";
 import { v1 } from "uuid";
 import {
   addTaskToFirebase,
@@ -12,7 +12,7 @@ import {
 export const fetchTasksAsync = createAsyncThunk(
   "tasks/fetchTasksAsync",
   async ({ uid, todolistId }: { uid: string; todolistId: string }, { dispatch }) => {
-    return new Promise<{ todolistId: string; tasks: Task[] }>((resolve) => {
+    return new Promise<{ todolistId: string; tasks: TaskType[] }>((resolve) => {
       fetchTasksFromFirebase(uid, todolistId, (tasks) => {
         const tasksArray = tasks ? Object.values(tasks) : [];
         resolve({ todolistId, tasks: tasksArray });
@@ -24,7 +24,7 @@ export const fetchTasksAsync = createAsyncThunk(
 export const addTaskAsync = createAsyncThunk(
   "tasks/addTaskAsync",
   async ({ uid, todolistId, title }: { uid: string; todolistId: string; title: string }, { dispatch }) => {
-    const newTask: Task = {
+    const newTask: TaskType = {
       id: v1(),
       title: title,
       status: "active",

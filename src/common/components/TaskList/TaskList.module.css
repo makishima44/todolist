@@ -1,0 +1,12 @@
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  max-height: 350px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 5px;
+}

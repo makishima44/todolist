@@ -4,7 +4,9 @@ import { Button } from "../Button/Button";
 import { useAppDispatch } from "../../../redux/store";
 import { addTaskAsync } from "../../../redux/slices/task/taskThunk";
 
-type TaskMenuProps = { uid: string; todolistId: string };
+import s from "./TaskMenu.module.css";
+
+type TaskMenuProps = { uid: string | null; todolistId: string };
 
 export const TaskMenu = memo(({ uid, todolistId }: TaskMenuProps) => {
   const dispatch = useAppDispatch();
@@ -25,9 +27,9 @@ export const TaskMenu = memo(({ uid, todolistId }: TaskMenuProps) => {
   }, [newTaskTitle, uid, todolistId, dispatch]);
 
   return (
-    <>
+    <div className={s.taskMenu}>
       <Input type={"text"} onChange={handleInputChange} value={newTaskTitle} />
       <Button useIcon={true} onClick={handleAddTask} />
-    </>
+    </div>
   );
 });

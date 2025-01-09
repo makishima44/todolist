@@ -12,7 +12,7 @@ export type TodolistsState = {
 
 export type StatusTask = "all" | "active" | "complete";
 
-export type Task = {
+export type TaskType = {
   id: string;
   title: string;
   status: StatusTask;
@@ -20,7 +20,7 @@ export type Task = {
 
 export type TasksState = {
   tasks: {
-    [todolistId: string]: Task[]; // Ключ - id тудулиста, значение - массив задач
+    [todolistId: string]: TaskType[]; // Ключ - id тудулиста, значение - массив задач
   };
   filteredStatus: {
     [todolistId: string]: StatusTask;
